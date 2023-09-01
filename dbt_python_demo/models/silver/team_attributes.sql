@@ -10,7 +10,7 @@ renamed as (
         id,
         team_fifa_api_id,
         team_api_id,
-        date(date) AS date,
+        date(date) AS team_attribute_date,
         buildupplayspeed,
         buildupplayspeedclass,
         buildupplaydribbling,

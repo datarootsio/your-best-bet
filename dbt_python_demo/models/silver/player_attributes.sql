@@ -10,7 +10,7 @@ renamed as (
         id,
         player_fifa_api_id,
         player_api_id,
-        date(date) as date,
+        date(date) as player_attribute_date,
         overall_rating,
         potential,
         preferred_foot,

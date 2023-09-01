@@ -5,7 +5,7 @@ with match as (
         league_id,
         season,
         stage,
-        date(date),
+        date(date) as match_date,
         match_api_id,
         home_team_api_id,
         away_team_api_id,
@@ -15,6 +15,8 @@ with match as (
         CAST( home_player_{{ loop.index }}  AS {{ dbt.type_int() }}),
         CAST( away_player_{{ loop.index }}  AS {{ dbt.type_int() }}),
         {% endfor %}
+
+        -- match metadata => leave out for now, weird parsing scheme
         goal,
         shoton,
         shotoff,
@@ -23,6 +25,8 @@ with match as (
         cross,
         corner,
         possession,
+
+        -- bookie odds
         b365h,
         b365d,
         b365a,
