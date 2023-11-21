@@ -17,7 +17,8 @@ analysis-paths: ["analyses"]
 test-paths: ["tests"]
 seed-paths: ["seeds"]
 macro-paths: ["macros"]
-snapshot-paths: ["snapshots"]
+snapshot-paths: ["snapsho
+ts"]
 
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
@@ -46,4 +47,12 @@ dispatch:
 vars:
   # The `start_date` variable will be accessible in all resources
   start_date: '2010-02-22'
-  run_date: '2015-12-31'
+  train_end_date: '2015-07-31'
+  run_date: '2016-01-01'
+  ml_experiment_model: 'random_forest'
+  ml_experiment_cv_n_iter: 20
+  ml_experiment_n_splits: 4
+  ml_experiment_enabled: false
+
+  # we select the model with the best results, but you can also provide DBFS path
+  ml_model_path: '/dbfs/FileStore/models/model_20230925141441.joblib'

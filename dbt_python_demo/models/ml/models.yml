@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: experiment
+    description: Trains the Match prediction model
+
+    # the entire context of the config can be retrieved -> dbt.config.get()
+    config:
+      materialized: table
+      submission_method: all_purpose_cluster
+      create_notebook: True
+      # this cluster id -> NOT the SQL warehouse
+      cluster_id: 0831-063805-6ugeg356
+      tags: []
+
+      # variables
+      train_start_date: "{{var('start_date')}}"
+      train_end_date: "{{ var('train_end_date') }}"
+      run_date: "{{ var('run_date') }}"
+      model: "{{ var('ml_experiment_model') }}"
+      n_iter: "{{ var('ml_experiment_cv_n_iter') }}"
+      n_splits: "{{ var('ml_experiment_n_splits') }}"
+      experiment_enabled: '{{ var("ml_experiment_enabled") }}'
+
+    columns:
+      - name: experiment_id
+        tests:
+          - unique
+          - not_null
+
+  - name: predict_output
+    description: Performs model predictions with RiskRover
+
+    config:
+      # materialized: incremental
+      # incremental_strategy: append
+      submission_method: all_purpose_cluster
+      create_notebook: True
+      cluster_id: 0831-063805-6ugeg356
+      tags: []
+
+      ml_model_path: "{{ var('ml_model_path') }}"

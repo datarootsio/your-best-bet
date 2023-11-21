@@ -4,6 +4,8 @@ with source as (
 
 ),
 
+{% set accepted_work_rates = ['low', 'medium', 'high'] %}
+
 renamed as (
 
     select
@@ -14,8 +16,12 @@ renamed as (
         overall_rating,
         potential,
         preferred_foot,
-        attacking_work_rate,
-        defensive_work_rate,
+        if(attacking_work_rate in {{to_sql_list(accepted_work_rates)}}, 
+            attacking_work_rate,
+             null) as attacking_work_rate,
+        if(defensive_work_rate in {{to_sql_list(accepted_work_rates)}}, 
+            defensive_work_rate,
+             null) as defensive_work_rate,
         crossing,
         finishing,
         heading_accuracy,
@@ -54,8 +60,8 @@ renamed as (
 
     from source
     where
-        date BETWEEN date('{{var("start_date")}}')
-        AND date('{{var("run_date")}}')
+        date > date('{{var("start_date")}}')
+        AND date < date('{{var("run_date")}}')
 )
 
 select * from renamed

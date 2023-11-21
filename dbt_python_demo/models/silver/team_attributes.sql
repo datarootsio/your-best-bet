@@ -37,8 +37,8 @@ renamed as (
 
     from source
     where
-        date BETWEEN date('{{var("start_date")}}')
-        AND date('{{var("run_date")}}')
+        date >= date('{{var("start_date")}}')
+        AND date < date('{{var("run_date")}}')
 
 )
 

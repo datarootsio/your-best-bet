@@ -4,6 +4,7 @@ select
     team.team_api_id AS team_id,
     team.team_long_name AS team_name,
     match.match_date,
+    match.league_id,
     match.season,
     match.stage,
     'home' AS home_or_away,
@@ -12,10 +13,15 @@ select
     match.home_team_goal AS goals_scored,
     match.away_team_goal AS goals_conceded,
     case
-        when match.home_team_goal > match.away_team_goal then 'win'
-        when match.home_team_goal = match.away_team_goal then 'draw'
-        when match.home_team_goal < match.away_team_goal then 'loss'
-    end as result
+        when match.home_team_goal > match.away_team_goal then 'W'
+        when match.home_team_goal = match.away_team_goal then 'D'
+        when match.home_team_goal < match.away_team_goal then 'L'
+    end as result,
+    case
+        when match.home_team_goal > match.away_team_goal then 3
+        when match.home_team_goal = match.away_team_goal then 1
+        when match.home_team_goal < match.away_team_goal then 0
+    end as match_points
 from
     {{ ref('match') }}
     match
@@ -32,6 +38,7 @@ select
     team.team_api_id AS team_id,
     team.team_long_name AS team_name,
     match.match_date,
+    match.league_id,
     match.season,
     match.stage,
     'away' AS home_or_away,
@@ -40,10 +47,15 @@ select
     match.away_team_goal AS goals_scored,
     match.home_team_goal AS goals_conceded,
     case
-        when match.home_team_goal > match.away_team_goal then 'loss'
-        when match.home_team_goal = match.away_team_goal then 'draw'
-        when match.home_team_goal < match.away_team_goal then 'win'
-    end as result
+        when match.home_team_goal > match.away_team_goal then 'L'
+        when match.home_team_goal = match.away_team_goal then 'D'
+        when match.home_team_goal < match.away_team_goal then 'W'
+    end as result,
+    case
+        when match.home_team_goal > match.away_team_goal then 0
+        when match.home_team_goal = match.away_team_goal then 1
+        when match.home_team_goal < match.away_team_goal then 3
+    end as match_points
 from
     {{ ref('match') }}
     match

@@ -1,0 +1,9 @@
+selectors:
+  - name: ml_predict_run
+    description: builds entire warehouse + makes ML predictions with selected model
+    definition:
+      '+predict_output'
+  - name: ml_experiment_run
+    description: Run ML experiments
+    definition:
+      '+experiment_history'

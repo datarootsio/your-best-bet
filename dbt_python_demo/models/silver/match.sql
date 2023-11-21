@@ -9,11 +9,15 @@ with match as (
         match_api_id,
         home_team_api_id,
         away_team_api_id,
-        home_team_goal,
-        away_team_goal,
+        if(date < date('{{var("run_date")}}'), home_team_goal, null) as home_team_goal,
+        if(date < date('{{var("run_date")}}'), away_team_goal, null) as away_team_goal,
         {% for i in range(11) %}
-        CAST( home_player_{{ loop.index }}  AS {{ dbt.type_int() }}),
-        CAST( away_player_{{ loop.index }}  AS {{ dbt.type_int() }}),
+        if(date < date('{{var("run_date")}}'), 
+            CAST( home_player_{{ loop.index }}  AS {{ dbt.type_int() }}), 
+            null) as home_player_{{ loop.index }},
+        if(date < date('{{var("run_date")}}'), 
+            CAST( away_player_{{ loop.index }}  AS {{ dbt.type_int() }}),
+            null) as away_player_{{ loop.index }},
         {% endfor %}
 
         -- match metadata => leave out for now, weird parsing scheme
@@ -63,8 +67,7 @@ with match as (
             'match'
         ) }}
     where
-        date BETWEEN date('{{var("start_date")}}')
-        AND date('{{var("run_date")}}')
+        date >= date('{{var("start_date")}}')
 )
 select
     *

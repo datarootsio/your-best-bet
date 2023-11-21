@@ -5,3 +5,8 @@ data
 .DS_Store
 
 notebooks/.ipynb_checkpoints
+*.joblib
+*.pkl
+*.pyc
+*.whl
+*.gz
