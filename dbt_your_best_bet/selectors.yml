@@ -1,0 +1,22 @@
+selectors:
+  - name: gold
+    description: Run entire warehouse without ML, so also preprocessing
+    definition: "+tag:gold"
+  - name: ml_predict_run
+    description: builds entire warehouse + makes ML predictions with selected model
+    definition:
+      method: fqn
+      value: "*"
+      exclude:
+        - "experiment"
+        - "experiment_history"
+    default: True
+  - name: ml_experiment
+    description: Run ML experiments
+    definition:
+      union:
+        - "experiment"
+        - "experiment_history"
+  - name: ml_evaluate
+    description: evaluates predictions
+    definition: "evaluate"

@@ -1,7 +1,6 @@
 .env
 venv
 logs
-data
 .DS_Store
 
 notebooks/.ipynb_checkpoints
@@ -10,3 +9,9 @@ notebooks/.ipynb_checkpoints
 *.pyc
 *.whl
 *.gz
+
+*.sqlite
+*.parquet
+*.bkp
+*.drawio
+*.ipynb

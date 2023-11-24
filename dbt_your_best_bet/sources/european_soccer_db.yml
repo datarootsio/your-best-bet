@@ -1,0 +1,608 @@
+version: 2
+
+sources:
+  - name: eu_soccer_db
+    description: ""
+    schema: default
+    tables:
+      - name: match
+        description: ""
+        columns:
+          - name: id
+            data_type: BIGINT
+            description: ""
+          - name: country_id
+            data_type: BIGINT
+            description: ""
+          - name: league_id
+            data_type: BIGINT
+            description: ""
+          - name: season
+            data_type: STRING
+            description: ""
+          - name: stage
+            data_type: BIGINT
+            description: ""
+          - name: date
+            data_type: STRING
+            description: ""
+          - name: match_api_id
+            data_type: BIGINT
+            description: ""
+          - name: home_team_api_id
+            data_type: BIGINT
+            description: ""
+          - name: away_team_api_id
+            data_type: BIGINT
+            description: ""
+          - name: home_team_goal
+            data_type: BIGINT
+            description: ""
+          - name: away_team_goal
+            data_type: BIGINT
+            description: ""
+          - name: home_player_x1
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_x2
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_x3
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_x4
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_x5
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_x6
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_x7
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_x8
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_x9
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_x10
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_x11
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_x1
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_x2
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_x3
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_x4
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_x5
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_x6
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_x7
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_x8
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_x9
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_x10
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_x11
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_y1
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_y2
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_y3
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_y4
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_y5
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_y6
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_y7
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_y8
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_y9
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_y10
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_y11
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_y1
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_y2
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_y3
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_y4
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_y5
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_y6
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_y7
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_y8
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_y9
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_y10
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_y11
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_1
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_2
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_3
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_4
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_5
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_6
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_7
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_8
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_9
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_10
+            data_type: DOUBLE
+            description: ""
+          - name: home_player_11
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_1
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_2
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_3
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_4
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_5
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_6
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_7
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_8
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_9
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_10
+            data_type: DOUBLE
+            description: ""
+          - name: away_player_11
+            data_type: DOUBLE
+            description: ""
+          - name: goal
+            data_type: STRING
+            description: ""
+          - name: shoton
+            data_type: STRING
+            description: ""
+          - name: shotoff
+            data_type: STRING
+            description: ""
+          - name: foulcommit
+            data_type: STRING
+            description: ""
+          - name: card
+            data_type: STRING
+            description: ""
+          - name: cross
+            data_type: STRING
+            description: ""
+          - name: corner
+            data_type: STRING
+            description: ""
+          - name: possession
+            data_type: STRING
+            description: ""
+          - name: b365h
+            data_type: DOUBLE
+            description: ""
+          - name: b365d
+            data_type: DOUBLE
+            description: ""
+          - name: b365a
+            data_type: DOUBLE
+            description: ""
+          - name: bwh
+            data_type: DOUBLE
+            description: ""
+          - name: bwd
+            data_type: DOUBLE
+            description: ""
+          - name: bwa
+            data_type: DOUBLE
+            description: ""
+          - name: iwh
+            data_type: DOUBLE
+            description: ""
+          - name: iwd
+            data_type: DOUBLE
+            description: ""
+          - name: iwa
+            data_type: DOUBLE
+            description: ""
+          - name: lbh
+            data_type: DOUBLE
+            description: ""
+          - name: lbd
+            data_type: DOUBLE
+            description: ""
+          - name: lba
+            data_type: DOUBLE
+            description: ""
+          - name: psh
+            data_type: DOUBLE
+            description: ""
+          - name: psd
+            data_type: DOUBLE
+            description: ""
+          - name: psa
+            data_type: DOUBLE
+            description: ""
+          - name: whh
+            data_type: DOUBLE
+            description: ""
+          - name: whd
+            data_type: DOUBLE
+            description: ""
+          - name: wha
+            data_type: DOUBLE
+            description: ""
+          - name: sjh
+            data_type: DOUBLE
+            description: ""
+          - name: sjd
+            data_type: DOUBLE
+            description: ""
+          - name: sja
+            data_type: DOUBLE
+            description: ""
+          - name: vch
+            data_type: DOUBLE
+            description: ""
+          - name: vcd
+            data_type: DOUBLE
+            description: ""
+          - name: vca
+            data_type: DOUBLE
+            description: ""
+          - name: gbh
+            data_type: DOUBLE
+            description: ""
+          - name: gbd
+            data_type: DOUBLE
+            description: ""
+          - name: gba
+            data_type: DOUBLE
+            description: ""
+          - name: bsh
+            data_type: DOUBLE
+            description: ""
+          - name: bsd
+            data_type: DOUBLE
+            description: ""
+          - name: bsa
+            data_type: DOUBLE
+            description: ""
+
+      - name: player
+        description: ""
+        columns:
+          - name: id
+            data_type: BIGINT
+            description: ""
+          - name: player_api_id
+            data_type: BIGINT
+            description: ""
+          - name: player_name
+            data_type: STRING
+            description: ""
+          - name: player_fifa_api_id
+            data_type: BIGINT
+            description: ""
+          - name: birthday
+            data_type: STRING
+            description: ""
+          - name: height
+            data_type: DOUBLE
+            description: ""
+          - name: weight
+            data_type: BIGINT
+            description: ""
+
+      - name: player_attributes
+        description: ""
+        columns:
+          - name: id
+            data_type: BIGINT
+            description: ""
+          - name: player_fifa_api_id
+            data_type: BIGINT
+            description: ""
+          - name: player_api_id
+            data_type: BIGINT
+            description: ""
+          - name: date
+            data_type: STRING
+            description: ""
+          - name: overall_rating
+            data_type: DOUBLE
+            description: ""
+          - name: potential
+            data_type: DOUBLE
+            description: ""
+          - name: preferred_foot
+            data_type: STRING
+            description: ""
+          - name: attacking_work_rate
+            data_type: STRING
+            description: ""
+          - name: defensive_work_rate
+            data_type: STRING
+            description: ""
+          - name: crossing
+            data_type: DOUBLE
+            description: ""
+          - name: finishing
+            data_type: DOUBLE
+            description: ""
+          - name: heading_accuracy
+            data_type: DOUBLE
+            description: ""
+          - name: short_passing
+            data_type: DOUBLE
+            description: ""
+          - name: volleys
+            data_type: DOUBLE
+            description: ""
+          - name: dribbling
+            data_type: DOUBLE
+            description: ""
+          - name: curve
+            data_type: DOUBLE
+            description: ""
+          - name: free_kick_accuracy
+            data_type: DOUBLE
+            description: ""
+          - name: long_passing
+            data_type: DOUBLE
+            description: ""
+          - name: ball_control
+            data_type: DOUBLE
+            description: ""
+          - name: acceleration
+            data_type: DOUBLE
+            description: ""
+          - name: sprint_speed
+            data_type: DOUBLE
+            description: ""
+          - name: agility
+            data_type: DOUBLE
+            description: ""
+          - name: reactions
+            data_type: DOUBLE
+            description: ""
+          - name: balance
+            data_type: DOUBLE
+            description: ""
+          - name: shot_power
+            data_type: DOUBLE
+            description: ""
+          - name: jumping
+            data_type: DOUBLE
+            description: ""
+          - name: stamina
+            data_type: DOUBLE
+            description: ""
+          - name: strength
+            data_type: DOUBLE
+            description: ""
+          - name: long_shots
+            data_type: DOUBLE
+            description: ""
+          - name: aggression
+            data_type: DOUBLE
+            description: ""
+          - name: interceptions
+            data_type: DOUBLE
+            description: ""
+          - name: positioning
+            data_type: DOUBLE
+            description: ""
+          - name: vision
+            data_type: DOUBLE
+            description: ""
+          - name: penalties
+            data_type: DOUBLE
+            description: ""
+          - name: marking
+            data_type: DOUBLE
+            description: ""
+          - name: standing_tackle
+            data_type: DOUBLE
+            description: ""
+          - name: sliding_tackle
+            data_type: DOUBLE
+            description: ""
+          - name: gk_diving
+            data_type: DOUBLE
+            description: ""
+          - name: gk_handling
+            data_type: DOUBLE
+            description: ""
+          - name: gk_kicking
+            data_type: DOUBLE
+            description: ""
+          - name: gk_positioning
+            data_type: DOUBLE
+            description: ""
+          - name: gk_reflexes
+            data_type: DOUBLE
+            description: ""
+
+      - name: team
+        description: ""
+        columns:
+          - name: id
+            data_type: BIGINT
+            description: ""
+          - name: team_api_id
+            data_type: BIGINT
+            description: ""
+          - name: team_fifa_api_id
+            data_type: DOUBLE
+            description: ""
+          - name: team_long_name
+            data_type: STRING
+            description: ""
+          - name: team_short_name
+            data_type: STRING
+            description: ""
+
+      - name: team_attributes
+        description: ""
+        columns:
+          - name: id
+            data_type: BIGINT
+            description: ""
+          - name: team_fifa_api_id
+            data_type: BIGINT
+            description: ""
+          - name: team_api_id
+            data_type: BIGINT
+            description: ""
+          - name: date
+            data_type: STRING
+            description: ""
+          - name: buildupplayspeed
+            data_type: BIGINT
+            description: ""
+          - name: buildupplayspeedclass
+            data_type: STRING
+            description: ""
+          - name: buildupplaydribbling
+            data_type: DOUBLE
+            description: ""
+          - name: buildupplaydribblingclass
+            data_type: STRING
+            description: ""
+          - name: buildupplaypassing
+            data_type: BIGINT
+            description: ""
+          - name: buildupplaypassingclass
+            data_type: STRING
+            description: ""
+          - name: buildupplaypositioningclass
+            data_type: STRING
+            description: ""
+          - name: chancecreationpassing
+            data_type: BIGINT
+            description: ""
+          - name: chancecreationpassingclass
+            data_type: STRING
+            description: ""
+          - name: chancecreationcrossing
+            data_type: BIGINT
+            description: ""
+          - name: chancecreationcrossingclass
+            data_type: STRING
+            description: ""
+          - name: chancecreationshooting
+            data_type: BIGINT
+            description: ""
+          - name: chancecreationshootingclass
+            data_type: STRING
+            description: ""
+          - name: chancecreationpositioningclass
+            data_type: STRING
+            description: ""
+          - name: defencepressure
+            data_type: BIGINT
+            description: ""
+          - name: defencepressureclass
+            data_type: STRING
+            description: ""
+          - name: defenceaggression
+            data_type: BIGINT
+            description: ""
+          - name: defenceaggressionclass
+            data_type: STRING
+            description: ""
+          - name: defenceteamwidth
+            data_type: BIGINT
+            description: ""
+          - name: defenceteamwidthclass
+            data_type: STRING
+            description: ""
+          - name: defencedefenderlineclass
+            data_type: STRING
+            description: ""

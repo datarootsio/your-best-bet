@@ -1,0 +1,6 @@
+dbt-databricks
+pandas
+poetry
+# for local development of dbt python models, you'll need pyspark
+# pyspark
+pyarrow
