@@ -23,15 +23,7 @@
 
   <p align="center">
     MLOps demo with Python models in dbt on the <a href="https://www.kaggle.com/datasets/hugomathien/soccer">European Soccer Database</a>
-    <br />
-    <a href="https://github.com/github_username/repo_name"><strong>Explore the docs »</strong></a>
-    <br />
-    <br />
-    <a href="https://github.com/github_username/repo_name">View Demo</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Report Bug</a>
-    ·
-    <a href="https://github.com/github_username/repo_name/issues">Request Feature</a>
+   
   </p>
 </div>
 
@@ -68,21 +60,7 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-### Built With
-
-* [![Next][Next.js]][Next-url]
-* [![React][React.js]][React-url]
-* [![Vue][Vue.js]][Vue-url]
-* [![Angular][Angular.io]][Angular-url]
-* [![Svelte][Svelte.dev]][Svelte-url]
-* [![Laravel][Laravel.com]][Laravel-url]
-* [![Bootstrap][Bootstrap.com]][Bootstrap-url]
-* [![JQuery][JQuery.com]][JQuery-url]
+In this project, we examine an examplary production ML pipeline. The goal of the project is to showcase how many MLOps concepts can be build within just one dbt project. This can be beneficial for data teams inside organisations to lift ml models faster to production.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -96,8 +74,8 @@ To get a local copy up and running follow these simple example steps.
 ### Prerequisites
 
 * Python
-* Databricks cluster
-* 
+* Access to a Databricks cluster (for example with [Azure free account](https://azure.microsoft.com/en-us/free))
+
 
 ### Installation
 
@@ -118,7 +96,7 @@ To get a local copy up and running follow these simple example steps.
    3. Upload data (parquet files) to warehouse, into the `default` schema in the `hive_metastore` catalog. Your catalog should look something like this \
    ![](images/catalog.png)
    4. Create a compute cluster
-   5. check the cluster id (you can find in the SparkUI), and set as env var: `DATABRICKS_CLUSTER_ID` \
+   5. check the cluster id (you can find in the SparkUI), and set as env var: `COMPUTE_CLUSTER_ID` \
    ![](images/sparkui.png)
 5. dbt
    1. initialise
@@ -147,8 +125,7 @@ To get a local copy up and running follow these simple example steps.
    poetry build
    pip install dist/riskrover-x.y.z.tar.gz 
    ```
-   2. Add as a [Workspace Library](https://docs.databricks.com/en/libraries/workspace-libraries.html#create-a-workspace-library) to DBFS
-   3. Install `riskrover` on your databricks compute cluster
+   2. Install the resulting `riskrover` whl file on your databricks compute cluster
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -163,8 +140,6 @@ To get a local copy up and running follow these simple example steps.
 dbt docs generate
 dbt docs serve
 ```
-
-_For more examples, please refer to the [Documentation](https://example.com)_
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 

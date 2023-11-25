@@ -1,7 +1,7 @@
 selectors:
   - name: gold
     description: Run entire warehouse without ML, so also preprocessing
-    definition: "+tag:gold"
+    definition: "+match_dataset"
   - name: ml_predict_run
     description: builds entire warehouse + makes ML predictions with selected model
     definition:

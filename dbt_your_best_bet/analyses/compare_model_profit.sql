@@ -2,7 +2,7 @@ with latest_match_prediction_per_model as (
   select eval.*,
     xp.class as model,
     xp.params
-  from football.evaluation eval
+  from {{ref('evaluation')}} eval
   inner join {{ref('experiment_history')}} xp
     on xp.best_estimator_path = eval.model_path
       and xp.rank_test_neg_log_loss = 1
