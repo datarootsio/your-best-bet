@@ -31,8 +31,6 @@ models:
     description: Performs model predictions with RiskRover
 
     config:
-      # materialized: incremental
-      # incremental_strategy: append
       submission_method: all_purpose_cluster
       create_notebook: True
       cluster_id: "{{env_var('COMPUTE_CLUSTER_ID', 'not set!')}}"

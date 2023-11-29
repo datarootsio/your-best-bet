@@ -49,7 +49,7 @@ vars:
   start_date: '2010-02-22'
   train_end_date: '2015-07-31'
   run_date: '2016-01-01'
-  ml_experiment_model: 'random_forest'
+  ml_experiment_model: 'logistic_regression'
   ml_experiment_cv_n_iter: 20
   ml_experiment_n_splits: 4
   ml_experiment_enabled: false

@@ -29,55 +29,35 @@
 
 
 
-<!-- TODO TABLE OF CONTENTS -->
-<details>
-  <summary>Table of Contents</summary>
-  <ol>
-    <li>
-      <a href="#about-the-project">About The Project</a>
-      <ul>
-        <li><a href="#built-with">Built With</a></li>
-      </ul>
-    </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-      <ul>
-        <li><a href="#prerequisites">Prerequisites</a></li>
-        <li><a href="#installation">Installation</a></li>
-      </ul>
-    </li>
-    <li><a href="#usage">Usage</a></li>
-    <li><a href="#roadmap">Roadmap</a></li>
-    <li><a href="#contributing">Contributing</a></li>
-    <li><a href="#license">License</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgments">Acknowledgments</a></li>
-  </ol>
-</details>
-
-
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
 In this project, we examine an examplary production ML pipeline. The goal of the project is to showcase how many MLOps concepts can be build within just one dbt project. This can be beneficial for data teams inside organisations to lift ml models faster to production.
 
+The use case is a daily (or weekly) sports betting where you try to beat the bookies. This projects holds the code for a datawarehouse with source data coming from the [European Soccer Database](https://www.kaggle.com/datasets/hugomathien/soccer). Using team and player statistics, performance, fifa stats and bookie odds, we'll find opportunities where at least 1 bookie has a worse probabilistic view on reality than our model. When our probabilistic odds are smaller than the bookies, we have an opportunity to win money 💰.
+
+Within the pipeline, you can:
+- **Dataset versioning**: run preprocessing -> (re)generate your ML dataset
+- **Experimentation**: run and store experiments
+- **Model management**: save and compare models
+- **Reproducibility**: run inference pipelines without train / serving skew (run simulations)
+- **Feature Store**: store all input features with the KPIs available at the time
+- **Prediction Audit**: store all predictions
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
-
 ## Getting Started
-
-This is an example of how you may give instructions on setting up your project locally.
-To get a local copy up and running follow these simple example steps.
 
 ### Prerequisites
 
 * Python
 * Access to a Databricks cluster (for example with [Azure free account](https://azure.microsoft.com/en-us/free))
+* It's also helpful to have a good background on [dbt](https://docs.getdbt.com/docs/introduction) to perform the examples
 
 
-### Installation
+### Installation (Azure)
 
 1. install virtual environment
    ```bash
@@ -96,10 +76,10 @@ To get a local copy up and running follow these simple example steps.
    3. Upload data (parquet files) to warehouse, into the `default` schema in the `hive_metastore` catalog. Your catalog should look something like this \
    ![](images/catalog.png)
    4. Create a compute cluster
-   5. check the cluster id (you can find in the SparkUI), and set as env var: `COMPUTE_CLUSTER_ID` \
+   5. check the cluster id (you can find in the SparkUI), and set as env var: `COMPUTE_CLUSTER_ID=...` \
    ![](images/sparkui.png)
 5. dbt
-   1. initialise
+   1. initialise and install dependencies.
    ```sh
    cd dbt_your_latest_bet
    dbt deps
@@ -118,7 +98,7 @@ To get a local copy up and running follow these simple example steps.
             type: databricks
     target: dev
    ```
-6. `riskrover` python package
+6. `riskrover` python package, managed with poetry
    1. build and install the package in your local environment
    ```sh
    cd riskrover
@@ -127,6 +107,14 @@ To get a local copy up and running follow these simple example steps.
    ```
    2. Install the resulting `riskrover` whl file on your databricks compute cluster
 
+
+You should now be able to run the entire pipeline without any trained models (i.e. the preprocessing):
+
+```sh
+dbt build --selector gold
+```
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 
@@ -134,12 +122,42 @@ To get a local copy up and running follow these simple example steps.
 <!-- USAGE EXAMPLES -->
 ## Usage
 
+For these examples to work -> you need to move to the root dir of the dbt project, i.e. `dbt_your_best_bet`
+
+### MWE for a simulation
+
+The default variables are stored in `dbt_project.yaml`. We find ourselves on 2016-01-01 in our simulation, with the option to run until 2016-05-25.
+
+```sh
+cd dbt_your_best_bet
+
+# Preprocessing
+dbt build --selector gold
+
+# Experimentation (by default -> training set to 2015-07-31, and trains a simple logistic regression with cross validation)
+dbt build --selector ml_experiment
+
+# Inference on test set (2015-08-01 -> 2015-12-31)
+dbt build --selector ml_predict_run
+
+# moving forward in time, for example with a weekly run
+dbt build --vars '{"run_date": "2016-01-08"}'
+dbt build --vars '{"run_date": "2016-01-15"}'
+dbt build --vars '{"run_date": "2016-01-22"}'
+...
+```
+
 ### Checking the data catalog
 
 ```sh
+cd dbt_your_best_bet
+
 dbt docs generate
 dbt docs serve
 ```
+
+At this point in time, no models are documented, however it's useful to see the lineage.
+![](images/lineage.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -148,12 +166,11 @@ dbt docs serve
 <!-- ROADMAP -->
 ## Roadmap
 
-- [ ] Feature 1
-- [ ] Feature 2
-- [ ] Feature 3
-    - [ ] Nested Feature
+Mostly maintenance, no plans on new features unless requested.
 
-See the [open issues](https://github.com/github_username/repo_name/issues) for a full list of proposed features (and known issues).
+- [ ] Documentation
+- [ ] Tests
+- [ ] Extra sql analysis models
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -162,7 +179,7 @@ See the [open issues](https://github.com/github_username/repo_name/issues) for a
 <!-- CONTRIBUTING -->
 ## Contributing
 
-Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are **greatly appreciated**.
+All contributions are welcome!
 
 If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag "enhancement".
 Don't forget to give the project a star! Thanks again!
@@ -180,24 +197,15 @@ Don't forget to give the project a star! Thanks again!
 <!-- LICENSE -->
 ## License
 
-Distributed under the MIT License. See `LICENSE.txt` for more information.
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+Distributed under the MIT License.
 
 
 
 <!-- CONTACT -->
 ## Contact
+- devdnhee@gmail.com / dorian@dataroots.io
 
 
-
-
-<!-- ACKNOWLEDGMENTS -->
-## Acknowledgments
-
-* []()
-* []()
-* []()
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
