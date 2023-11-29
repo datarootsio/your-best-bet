@@ -7,6 +7,7 @@ import logging
 import pyspark.sql.functions as F
 import pyspark.sql.types as T
 
+# PySpark schema for the output predictions
 _OUTPUT_SCHEMA = T.StructType(
     [
         T.StructField("prediction_id", T.StringType(), True),
@@ -27,6 +28,16 @@ _OUTPUT_SCHEMA = T.StructType(
 
 
 def model(dbt, session):
+    """
+    Execute model predictions using provided data and configurations.
+
+    Args:
+    - dbt (object): Object containing configuration and data references.
+    - session (SparkSession): Session object for executing operations.
+
+    Returns:
+    - pd.DataFrame: DataFrame containing predictions and associated metadata.
+    """
     # /!\ The incremental materialisation is only read when in the python model itself
     dbt.config(materialized="incremental", incremental_strategy="append")
 
@@ -45,7 +56,7 @@ def model(dbt, session):
 
     df = dbt.ref("predict_input")
     if dbt.is_incremental:
-        # only make predictions we haven't seen yet
+        # Retrieve already predicted IDs to avoid duplications
         predictions = (
             session.read.table(
                 f"{dbt.this.database}.{dbt.this.schema}.{dbt.this.identifier}"
@@ -53,6 +64,7 @@ def model(dbt, session):
             .filter(F.col("model_path") == model_path)
             .select(F.col("prediction_id").alias("prediction_id_out"))
         )
+        # Exclude already predicted IDs from the current prediction set
         df = (
             df.join(
                 predictions,
@@ -62,13 +74,17 @@ def model(dbt, session):
             .filter(F.isnull(F.col("prediction_id_out")))
             .drop(F.col("prediction_id_out"))
         )
+        
+    # Check for empty data and return an empty DataFrame if necessary
     if df.count() == 0:
         return session.createDataFrame([], schema=_OUTPUT_SCHEMA)
 
     df = df.toPandas()
 
+    # Prepare metadata for predictions
     meta = {"model_path": model_path, "prediction_timestamp": datetime.now()}
 
+    # Preprocess data and generate predictions from the model
     X, _ = preprocess_match_dataset(df, id_column="prediction_id")
     predictions = model(X).reset_index().assign(**meta)
 

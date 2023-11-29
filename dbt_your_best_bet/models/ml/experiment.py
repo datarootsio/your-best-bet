@@ -17,6 +17,7 @@ from riskrover import pipeline
 
 import pyspark.sql.types as T
 
+# Grid search parameters for different models
 _MODEL_GRIDS = {
     "random_forest": {
         "n_estimators": scipy.stats.randint(50, 1000),
@@ -39,10 +40,12 @@ _MODEL_GRIDS = {
     },
 }
 
+# Parameters for the pipeline
 _PIPELINE_PARAMS = {
     "selector__k": scipy.stats.randint(20, 100),
 }
 
+# Scoring metrics for cross-validation
 _CV_SCORING = [
     "neg_log_loss",
     "accuracy",
@@ -52,8 +55,10 @@ _CV_SCORING = [
     "roc_auc_ovr",
 ]
 
+# Path for storing trained models
 _DBFS_MODELS_PATH = "/dbfs/FileStore/models"
 
+# Output schema structure using PySpark SQL types
 _OUTPUT_SCHEMA = T.StructType(
     [
         T.StructField("mean_fit_time", T.DoubleType(), True),
@@ -92,6 +97,15 @@ _OUTPUT_SCHEMA = T.StructType(
 
 
 def build_param_grid(model_name):
+    """
+    Build parameter grid for grid search based on the selected model.
+
+    Args:
+    - model_name (str): Name of the machine learning model.
+
+    Returns:
+    - dict: Parameter grid for grid search.
+    """
     model_params = {
         f"model__estimator__{k}": v for k, v in _MODEL_GRIDS[model_name].items()
     }
@@ -99,6 +113,15 @@ def build_param_grid(model_name):
 
 
 def get_model(model_name):
+    """
+    Get the instance of the selected machine learning model.
+
+    Args:
+    - model_name (str): Name of the machine learning model.
+
+    Returns:
+    - object: Instance of the specified machine learning model.
+    """
     match model_name:
         case "random_forest":
             return ensemble.RandomForestClassifier()
@@ -109,11 +132,30 @@ def get_model(model_name):
 
 
 def generate_experiment_id(r):
+    """
+    Generate an experiment ID using experiment details.
+
+    Args:
+    - r (dict / pd.Series): Dictionary containing experiment details.
+
+    Returns:
+    - str: Experiment ID generated using hash digest.
+    """
     s_enc = f"{r['experiment_name']}_{r['rank_test_neg_log_loss']}".encode()
     return hashlib.md5(s_enc).hexdigest()
 
 
 def model(dbt, session):
+    """
+    Train machine learning models using the provided data and configurations.
+
+    Args:
+    - dbt (object at run time): Object containing configuration and data references.
+    - session: SparkSession object for executing operations.
+
+    Returns:
+    - pd.DataFrame: DataFrame containing experiment results and metadata.
+    """
     if not dbt.config.get("experiment_enabled"):
         return session.createDataFrame([], _OUTPUT_SCHEMA)
 
