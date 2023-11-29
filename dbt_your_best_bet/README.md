@@ -4,11 +4,11 @@ DBT project for a data pipeline for the [European Soccer Database](https://www.k
 
 ## 🛠 Installation
 
-See top level [README.md](README.md).
+See top level [../README.md](README.md).
 
 ## 🏁 Quickstart
 
-See top level [README.md](README.md).
+See top level [../README.md](README.md).
 
 ## 📁 File structure
 
