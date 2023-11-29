@@ -1,22 +1,48 @@
-from typing import Any
+from typing import Any, Union
 from riskrover.pipeline import build_pipeline
 import joblib
 import pandas as pd
 
+# Mapping for result classes
 _MAP_TO_CLASS = {"a": "away", "d": "draw", "h": "home"}
 
 
 class RiskRover:
     def __init__(self, pipeline=None, *args, **kwargs):
+        """
+        Initialize the RiskRover class.
+
+        Args:
+        - pipeline: Custom pipeline instance.
+        - *args, **kwargs: Additional arguments for pipeline creation.
+        """
         if pipeline is not None:
             self.pipeline = pipeline
         else:
             self.pipeline = build_pipeline(*args, **kwargs)
 
     def __getattr__(self, attr):
+        """
+        Redirect attribute calls to the pipeline.
+
+        Args:
+        - attr: Attribute to retrieve.
+
+        Returns:
+        - Any: Retrieved attribute from the pipeline.
+        """
         return getattr(self.pipeline, attr)
 
-    def _get_decision_from_row(self, row):
+    def _get_decision_from_row(self, row: pd.Series):
+        """
+        Extract decision information (who to bet on, model odds, etc..) from a row of data.
+
+        Args:
+        - row: A row from the dataset.
+
+        Returns:
+        - pd.Series: Decision information extracted from the row.
+        """
         row.name = "odd"
         best_odds = (
             row[row.filter(regex="^odds").groupby(lambda x: x[-1]).idxmax().values]
@@ -50,6 +76,15 @@ class RiskRover:
         return decision
 
     def __call__(self, X, *args: Any, **kwds: Any) -> Any:
+        """
+        Execute RiskRover predictions based on input data.
+
+        Args:
+        - X: Input DataFrame for prediction.
+
+        Returns:
+        - pd.DataFrame: DataFrame containing prediction results.
+        """
         y_proba = self.predict_proba(X)
         y_odds = 1 + (1 - y_proba) / y_proba
 
@@ -70,5 +105,14 @@ class RiskRover:
 
     @classmethod
     def from_disk(cls, path):
+        """
+        Load a RiskRover instance from a disk path.
+
+        Args:
+        - path: Path to the saved RiskRover model.
+
+        Returns:
+        - RiskRover: Loaded RiskRover instance.
+        """
         pipeline = joblib.load(path)
         return RiskRover(pipeline)

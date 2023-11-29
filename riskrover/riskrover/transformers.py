@@ -4,7 +4,10 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.utils.validation import check_array, check_is_fitted
 from sklearn.preprocessing import OrdinalEncoder
 
+
 class SelectTransformer(TransformerMixin, BaseEstimator):
+    """This transformer will select and drop columns"""
+
     def __init__(self, include=None, exclude=[]):
         self.include = include
         self.exclude = exclude
@@ -21,7 +24,9 @@ class SelectTransformer(TransformerMixin, BaseEstimator):
         self.validate(X)
         self.feature_names_in_ = list(X)
 
-        out_cols = (set(X) & set(self.include if self.include else X)) - set(self.exclude)
+        out_cols = (set(X) & set(self.include if self.include else X)) - set(
+            self.exclude
+        )
 
         self.feature_names_out_ = list(filter(lambda c: c in out_cols, list(X)))
 
@@ -44,14 +49,16 @@ class SelectTransformer(TransformerMixin, BaseEstimator):
 
         if self.include:
             X = X[self.include]
-        
+
         X = X.drop(columns=self.exclude)
 
         return X
 
 
 class GroupedImputer(TransformerMixin, BaseEstimator):
-    def __init__(self, groupby, agg_func='mode'):
+    """This transformer will impute missing data differently based on the group"""
+
+    def __init__(self, groupby, agg_func="mode"):
         self.groupby = groupby
         self.agg_func = agg_func
 
@@ -63,17 +70,17 @@ class GroupedImputer(TransformerMixin, BaseEstimator):
         columns = list(X)
         self.feature_names_in_ = columns
         self.feature_names_out_ = columns
-        
+
         match self.agg_func:
-            case 'mode':
+            case "mode":
                 agg_func = pd.Series.mode
-            case 'mean':
+            case "mean":
                 agg_func = pd.Series.mean
-            case 'median':
+            case "median":
                 agg_func = pd.Series.median
             case _:
                 agg_func = pd.Series.median
-        
+
         def mode_map(el):
             if np.isscalar(el) or len(el) == 0:
                 return el
@@ -94,9 +101,11 @@ class GroupedImputer(TransformerMixin, BaseEstimator):
         # Check is fit had been called
         check_is_fitted(self, "fill_data")
 
-        df_merged = X.merge(self.fill_data, on=self.groupby, how='left', suffixes=("", "_fill"))
+        df_merged = X.merge(
+            self.fill_data, on=self.groupby, how="left", suffixes=("", "_fill")
+        )
         df_merged.index = X.index
-        
+
         for c in filter(lambda c: c not in self.groupby, self.feature_names_in_):
             df_merged[c] = df_merged[c].fillna(value=df_merged[f"{c}_fill"])
 

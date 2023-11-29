@@ -10,7 +10,7 @@ from sklearn import (
     impute,
     linear_model,
     preprocessing,
-    calibration
+    calibration,
 )
 
 from pathlib import Path
@@ -18,6 +18,7 @@ import json
 
 set_config(transform_output="pandas")
 
+# Categorical type definitions for features
 amount_type = pd.CategoricalDtype(categories=["Little", "Normal", "Lots"], ordered=True)
 speed_type = pd.CategoricalDtype(categories=["Slow", "Balanced", "Fast"], ordered=True)
 length_type = pd.CategoricalDtype(categories=["Short", "Mixed", "Long"], ordered=True)
@@ -68,6 +69,17 @@ TARGET_MAP = {"home": 0, "draw": 1, "away": 2}
 
 
 def get_dataset_features(df, subset="all", return_dict=False):
+    """
+    Get features from the dataset based on the specified subset.
+
+    Args:
+    - df (pd.DataFrame): Input DataFrame.
+    - subset (str): Subset selection, default is 'all'.
+    - return_dict (bool): Return as dictionary or list, default is False.
+
+    Returns:
+    - Union[List[str], Dict[str, List[str]]]: Features based on the subset.
+    """
     season_info = ["league_name"]
     odds_features = df.filter(like="odds").columns.tolist()
     numeric_stats = df.filter(regex="_(?:avg|median|count|min|max)_").columns.tolist()
@@ -105,6 +117,18 @@ def preprocess_match_dataset(
     min_date="2009-01-01",
     max_date="2017-01-01",
 ):
+    """
+    Preprocess the match dataset.
+
+    Args:
+    - df (pd.DataFrame): Input DataFrame.
+    - id_column (str): Identifier column name, default is 'id'.
+    - min_date (str): Minimum date, default is '2009-01-01'.
+    - max_date (str): Maximum date, default is '2017-01-01'.
+
+    Returns:
+    - Tuple[pd.DataFrame, pd.Series]: Processed X and y (if present).
+    """
     df_pp = (
         df.copy()
         .set_index(id_column)
@@ -127,6 +151,16 @@ def preprocess_match_dataset(
 
 
 def build_pipeline(model=None, *args, **kwargs):
+    """
+    Build a scikit-learn pipeline.
+
+    Args:
+    - model (Any): Model for the pipeline, default is None.
+    - *args, **kwargs: Additional arguments.
+
+    Returns:
+    - pipeline.Pipeline: Data processing pipeline.
+    """
     if model is None:
         model = linear_model.LogisticRegression()
 
@@ -172,16 +206,6 @@ def build_pipeline(model=None, *args, **kwargs):
 
     numerical_stats_pipeline = pipeline.Pipeline(
         steps=[
-            # (
-            #     "grouped_imputer",
-            #     transformers.GroupedImputer(
-            #         groupby=FEATURES["season_info"], agg_func="mean"
-            #     ),
-            # ),
-            # (
-            #     "drop_season_info",
-            #     transformers.SelectTransformer(exclude=FEATURES["season_info"]),
-            # ),
             ("constant_imputer", impute.SimpleImputer(strategy="median")),
             ("numeric", preprocessing.StandardScaler()),
         ]
