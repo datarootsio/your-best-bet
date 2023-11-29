@@ -1,18 +1,7 @@
-<!-- Improved compatibility of back to top link: See: https://github.com/othneildrew/Best-README-Template/pull/73 -->
+
 <a name="readme-top"></a>
 
-<!-- TODO PROJECT SHIELDS -->
-<!--
-*** I'm using markdown "reference style" links for readability.
-*** Reference links are enclosed in brackets [ ] instead of parentheses ( ).
-*** See the bottom of this document for the declaration of the reference variables
-*** for contributors-url, forks-url, etc. This is an optional, concise syntax you may use.
-*** https://www.markdownguide.org/basic-syntax/#reference-style-links
--->
 
-
-
-<!-- TODO: fix PROJECT LOGO -->
 <br />
 <div align="center">
   <a href="https://github.com/devdnhee">
@@ -32,18 +21,18 @@
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
+Welcome to the high-octane world of production ML pipelines! We're thrilled to present an epic demonstration showcasing numerous MLOps concepts packed into a single dbt project. Strap in as we unveil this treasure trove of tools, tailored to empower data teams within organizations, speeding up the journey of ML models to production!
 
-In this project, we examine an examplary production ML pipeline. The goal of the project is to showcase how many MLOps concepts can be build within just one dbt project. This can be beneficial for data teams inside organisations to lift ml models faster to production.
+Imagine a scenario of daily (or weekly) sports betting where you're on a quest to outsmart the bookies. This project houses the code for a data warehouse powered by the [European Soccer Database](https://www.kaggle.com/datasets/hugomathien/soccer). Utilizing team and player statistics, performance metrics, FIFA stats, and bookie odds, we'll hunt down opportunities where our model paints a more accurate picture than at least one bookie. When our odds stack up better against theirs, it's our chance to strike gold! 💰
 
-The use case is a daily (or weekly) sports betting where you try to beat the bookies. This projects holds the code for a datawarehouse with source data coming from the [European Soccer Database](https://www.kaggle.com/datasets/hugomathien/soccer). Using team and player statistics, performance, fifa stats and bookie odds, we'll find opportunities where at least 1 bookie has a worse probabilistic view on reality than our model. When our probabilistic odds are smaller than the bookies, we have an opportunity to win money 💰.
+Within our pipeline, you can:
 
-Within the pipeline, you can:
-- **Dataset versioning**: run preprocessing -> (re)generate your ML dataset
-- **Experimentation**: run and store experiments
-- **Model management**: save and compare models
-- **Reproducibility**: run inference pipelines without train / serving skew (run simulations)
-- **Feature Store**: store all input features with the KPIs available at the time
-- **Prediction Audit**: store all predictions
+- **Version Your Dataset**: run preprocessing to (re)generate your ML dataset
+- **Experiment & Store**: run and save experiments
+- **Model Management**: save and compare models
+- **Reproducibility**: ensure inference pipelines run without train/serving skew (run simulations)
+- **Feature Store**: house all input features with the available KPIs at that time
+- **Prediction Audit**: maintain a log of all predictions
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -51,13 +40,18 @@ Within the pipeline, you can:
 ## Getting Started
 
 ### Prerequisites
+This thrilling adventure requires:
 
 * Python
-* Access to a Databricks cluster (for example with [Azure free account](https://azure.microsoft.com/en-us/free))
-* It's also helpful to have a good background on [dbt](https://docs.getdbt.com/docs/introduction) to perform the examples
+* Access to a Databricks cluster (e.g., [Azure free account](https://azure.microsoft.com/en-us/free))
+* A firm grasp on [dbt](https://docs.getdbt.com/docs/introduction) for seamless execution of these examples
+
 
 
 ### Installation (Azure)
+
+Buckle up for the setup ride:
+
 
 1. install virtual environment
    ```bash
@@ -122,7 +116,9 @@ dbt build --selector gold
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-For these examples to work -> you need to move to the root dir of the dbt project, i.e. `dbt_your_best_bet`
+Explore and command the powers of our pipeline.
+
+For these examples to work -> you need to move to the root dir of the dbt project, i.e. `dbt_your_best_bet`. 
 
 ### MWE for a simulation
 
@@ -156,7 +152,8 @@ dbt docs generate
 dbt docs serve
 ```
 
-At this point in time, no models are documented, however it's useful to see the lineage.
+It's like a grand lineage tale with no models documented yet—stay tuned!
+We can already check the lineage:
 ![](images/lineage.png)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -208,37 +205,3 @@ Distributed under the MIT License.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-
-
-<!-- MARKDOWN LINKS & IMAGES -->
-<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
-[contributors-shield]: https://img.shields.io/github/contributors/github_username/repo_name.svg?style=for-the-badge
-[contributors-url]: https://github.com/github_username/repo_name/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/github_username/repo_name.svg?style=for-the-badge
-[forks-url]: https://github.com/github_username/repo_name/network/members
-[stars-shield]: https://img.shields.io/github/stars/github_username/repo_name.svg?style=for-the-badge
-[stars-url]: https://github.com/github_username/repo_name/stargazers
-[issues-shield]: https://img.shields.io/github/issues/github_username/repo_name.svg?style=for-the-badge
-[issues-url]: https://github.com/github_username/repo_name/issues
-[license-shield]: https://img.shields.io/github/license/github_username/repo_name.svg?style=for-the-badge
-[license-url]: https://github.com/github_username/repo_name/blob/master/LICENSE.txt
-[linkedin-shield]: https://img.shields.io/badge/-LinkedIn-black.svg?style=for-the-badge&logo=linkedin&colorB=555
-[linkedin-url]: https://linkedin.com/in/linkedin_username
-[product-screenshot]: images/screenshot.png
-[Next.js]: https://img.shields.io/badge/next.js-000000?style=for-the-badge&logo=nextdotjs&logoColor=white
-[Next-url]: https://nextjs.org/
-[React.js]: https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB
-[React-url]: https://reactjs.org/
-[Vue.js]: https://img.shields.io/badge/Vue.js-35495E?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D
-[Vue-url]: https://vuejs.org/
-[Angular.io]: https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white
-[Angular-url]: https://angular.io/
-[Svelte.dev]: https://img.shields.io/badge/Svelte-4A4A55?style=for-the-badge&logo=svelte&logoColor=FF3E00
-[Svelte-url]: https://svelte.dev/
-[Laravel.com]: https://img.shields.io/badge/Laravel-FF2D20?style=for-the-badge&logo=laravel&logoColor=white
-[Laravel-url]: https://laravel.com
-[Bootstrap.com]: https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white
-[Bootstrap-url]: https://getbootstrap.com
-[JQuery.com]: https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jquery&logoColor=white
-[JQuery-url]: https://jquery.com 
