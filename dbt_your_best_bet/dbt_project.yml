@@ -52,7 +52,7 @@ vars:
   ml_experiment_model: 'logistic_regression'
   ml_experiment_cv_n_iter: 20
   ml_experiment_n_splits: 4
-  ml_experiment_enabled: false
+  ml_experiment_enabled: true
 
   # we select the model with the best results, but you can also provide DBFS path
   ml_model_path: 'best'
