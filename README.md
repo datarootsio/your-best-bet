@@ -55,7 +55,7 @@ Buckle up for the setup ride:
 
 1. install virtual environment
    ```bash
-   virtualenv venv
+   virtualenv .venv
    source venv/bin/activate
    pip install -r requirements.txt
    ```

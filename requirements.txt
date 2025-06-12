@@ -1,6 +1,6 @@
-dbt-databricks
-pandas
-poetry
+dbt-databricks~=1.10.3
+pandas~=2.2.3
+poetry~=2.1.3
+pyarrow~=20.0.0
 # for local development of dbt python models, you'll need pyspark
 # pyspark
-pyarrow
