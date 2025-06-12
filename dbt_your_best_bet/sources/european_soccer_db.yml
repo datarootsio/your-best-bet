@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: eu_soccer_db
     description: ""
-    schema: default
+    schema: "{{ env_var('DATABRICKS_SOURCE_SCHEMA', 'default') }}"
     tables:
       - name: match
         description: ""
