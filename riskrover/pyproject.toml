@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "riskrover"
-version = "0.1.0"
+version = "0.2.0"
 description = "Python package"
 authors = ["Dorian Van den Heede <dorian@dataroots.io>"]
 readme = "README.md"
