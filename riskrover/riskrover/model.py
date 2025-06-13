@@ -60,10 +60,12 @@ class RiskRover:
             .set_index("bet")
         )
 
+        # expected_profit = odd / model_odd - 1
+        # if expected_profit > 0 then we have a positive yield
         decision_info = (
             model_odds.join(best_odds, lsuffix="_model", rsuffix="_bookie")
             .rename(columns={"odd_model": "xOdd"})
-            .assign(xProfit=lambda df: df["odd_bookie"] - df["xOdd"])
+            .assign(xProfit=lambda df: df["odd_bookie"] / df["xOdd"] - 1)
             .assign(xYieldsProfit=lambda df: df.xProfit > 0)
             .reset_index()
         )
@@ -86,7 +88,7 @@ class RiskRover:
         - pd.DataFrame: DataFrame containing prediction results.
         """
         y_proba = self.predict_proba(X)
-        y_odds = 1 + (1 - y_proba) / y_proba
+        y_odds = 1 / y_proba
 
         df_odds = X.filter(regex="odds").join(
             pd.DataFrame(y_odds, columns=["xh", "xa", "xd"], index=X.index),

@@ -2,607 +2,607 @@ version: 2
 
 sources:
   - name: eu_soccer_db
-    description: ""
+    description: "{{ doc('eu_soccer_db') }}"
     schema: "{{ env_var('DATABRICKS_SOURCE_SCHEMA', 'default') }}"
     tables:
       - name: match
-        description: ""
+        description: "{{ doc('eu_soccer_db_match') }}"
         columns:
           - name: id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('match_id') }}"
           - name: country_id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('match_country_id') }}"
           - name: league_id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('match_league_id') }}"
           - name: season
             data_type: STRING
-            description: ""
+            description: "{{ doc('match_season') }}"
           - name: stage
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('match_stage') }}"
           - name: date
             data_type: STRING
-            description: ""
+            description: "{{ doc('match_date') }}"
           - name: match_api_id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('match_match_api_id') }}"
           - name: home_team_api_id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('match_home_team_api_id') }}"
           - name: away_team_api_id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('match_away_team_api_id') }}"
           - name: home_team_goal
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('match_home_team_goal') }}"
           - name: away_team_goal
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('match_away_team_goal') }}"
           - name: home_player_x1
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_x1') }}"
           - name: home_player_x2
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_x2') }}"
           - name: home_player_x3
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_x3') }}"
           - name: home_player_x4
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_x4') }}"
           - name: home_player_x5
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_x5') }}"
           - name: home_player_x6
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_x6') }}"
           - name: home_player_x7
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_x7') }}"
           - name: home_player_x8
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_x8') }}"
           - name: home_player_x9
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_x9') }}"
           - name: home_player_x10
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_x10') }}"
           - name: home_player_x11
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_x11') }}"
           - name: away_player_x1
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_x1') }}"
           - name: away_player_x2
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_x2') }}"
           - name: away_player_x3
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_x3') }}"
           - name: away_player_x4
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_x4') }}"
           - name: away_player_x5
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_x5') }}"
           - name: away_player_x6
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_x6') }}"
           - name: away_player_x7
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_x7') }}"
           - name: away_player_x8
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_x8') }}"
           - name: away_player_x9
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_x9') }}"
           - name: away_player_x10
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_x10') }}"
           - name: away_player_x11
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_x11') }}"
           - name: home_player_y1
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_y1') }}"
           - name: home_player_y2
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_y2') }}"
           - name: home_player_y3
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_y3') }}"
           - name: home_player_y4
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_y4') }}"
           - name: home_player_y5
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_y5') }}"
           - name: home_player_y6
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_y6') }}"
           - name: home_player_y7
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_y7') }}"
           - name: home_player_y8
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_y8') }}"
           - name: home_player_y9
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_y9') }}"
           - name: home_player_y10
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_y10') }}"
           - name: home_player_y11
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_y11') }}"
           - name: away_player_y1
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_y1') }}"
           - name: away_player_y2
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_y2') }}"
           - name: away_player_y3
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_y3') }}"
           - name: away_player_y4
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_y4') }}"
           - name: away_player_y5
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_y5') }}"
           - name: away_player_y6
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_y6') }}"
           - name: away_player_y7
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_y7') }}"
           - name: away_player_y8
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_y8') }}"
           - name: away_player_y9
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_y9') }}"
           - name: away_player_y10
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_y10') }}"
           - name: away_player_y11
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_y11') }}"
           - name: home_player_1
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_1') }}"
           - name: home_player_2
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_2') }}"
           - name: home_player_3
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_3') }}"
           - name: home_player_4
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_4') }}"
           - name: home_player_5
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_5') }}"
           - name: home_player_6
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_6') }}"
           - name: home_player_7
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_7') }}"
           - name: home_player_8
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_8') }}"
           - name: home_player_9
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_9') }}"
           - name: home_player_10
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_10') }}"
           - name: home_player_11
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_home_player_11') }}"
           - name: away_player_1
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_1') }}"
           - name: away_player_2
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_2') }}"
           - name: away_player_3
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_3') }}"
           - name: away_player_4
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_4') }}"
           - name: away_player_5
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_5') }}"
           - name: away_player_6
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_6') }}"
           - name: away_player_7
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_7') }}"
           - name: away_player_8
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_8') }}"
           - name: away_player_9
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_9') }}"
           - name: away_player_10
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_10') }}"
           - name: away_player_11
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_away_player_11') }}"
           - name: goal
             data_type: STRING
-            description: ""
+            description: "{{ doc('match_goal') }}"
           - name: shoton
             data_type: STRING
-            description: ""
+            description: "{{ doc('match_shoton') }}"
           - name: shotoff
             data_type: STRING
-            description: ""
+            description: "{{ doc('match_shotoff') }}"
           - name: foulcommit
             data_type: STRING
-            description: ""
+            description: "{{ doc('match_foulcommit') }}"
           - name: card
             data_type: STRING
-            description: ""
+            description: "{{ doc('match_card') }}"
           - name: cross
             data_type: STRING
-            description: ""
+            description: "{{ doc('match_cross') }}"
           - name: corner
             data_type: STRING
-            description: ""
+            description: "{{ doc('match_corner') }}"
           - name: possession
             data_type: STRING
-            description: ""
+            description: "{{ doc('match_possession') }}"
           - name: b365h
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_b365h') }}"
           - name: b365d
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_b365d') }}"
           - name: b365a
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_b365a') }}"
           - name: bwh
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_bwh') }}"
           - name: bwd
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_bwd') }}"
           - name: bwa
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_bwa') }}"
           - name: iwh
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_iwh') }}"
           - name: iwd
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_iwd') }}"
           - name: iwa
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_iwa') }}"
           - name: lbh
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_lbh') }}"
           - name: lbd
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_lbd') }}"
           - name: lba
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_lba') }}"
           - name: psh
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_psh') }}"
           - name: psd
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_psd') }}"
           - name: psa
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_psa') }}"
           - name: whh
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_whh') }}"
           - name: whd
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_whd') }}"
           - name: wha
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_wha') }}"
           - name: sjh
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_sjh') }}"
           - name: sjd
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_sjd') }}"
           - name: sja
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_sja') }}"
           - name: vch
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_vch') }}"
           - name: vcd
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_vcd') }}"
           - name: vca
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_vca') }}"
           - name: gbh
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_gbh') }}"
           - name: gbd
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_gbd') }}"
           - name: gba
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_gba') }}"
           - name: bsh
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_bsh') }}"
           - name: bsd
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_bsd') }}"
           - name: bsa
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('match_bsa') }}"
 
       - name: player
-        description: ""
+        description: "{{ doc('eu_soccer_db_player') }}"
         columns:
           - name: id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('player_id') }}"
           - name: player_api_id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('player_player_api_id') }}"
           - name: player_name
             data_type: STRING
-            description: ""
+            description: "{{ doc('player_player_name') }}"
           - name: player_fifa_api_id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('player_player_fifa_api_id') }}"
           - name: birthday
             data_type: STRING
-            description: ""
+            description: "{{ doc('player_birthday') }}"
           - name: height
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_height') }}"
           - name: weight
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('player_weight') }}"
 
       - name: player_attributes
-        description: ""
+        description: "{{ doc('eu_soccer_db_player_attributes') }}"
         columns:
           - name: id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('player_attributes_id') }}"
           - name: player_fifa_api_id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('player_attributes_player_fifa_api_id') }}"
           - name: player_api_id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('player_attributes_player_api_id') }}"
           - name: date
             data_type: STRING
-            description: ""
+            description: "{{ doc('player_attributes_date') }}"
           - name: overall_rating
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_overall_rating') }}"
           - name: potential
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_potential') }}"
           - name: preferred_foot
             data_type: STRING
-            description: ""
+            description: "{{ doc('player_attributes_preferred_foot') }}"
           - name: attacking_work_rate
             data_type: STRING
-            description: ""
+            description: "{{ doc('player_attributes_attacking_work_rate') }}"
           - name: defensive_work_rate
             data_type: STRING
-            description: ""
+            description: "{{ doc('player_attributes_defensive_work_rate') }}"
           - name: crossing
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_crossing') }}"
           - name: finishing
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_finishing') }}"
           - name: heading_accuracy
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_heading_accuracy') }}"
           - name: short_passing
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_short_passing') }}"
           - name: volleys
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_volleys') }}"
           - name: dribbling
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_dribbling') }}"
           - name: curve
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_curve') }}"
           - name: free_kick_accuracy
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_free_kick_accuracy') }}"
           - name: long_passing
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_long_passing') }}"
           - name: ball_control
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_ball_control') }}"
           - name: acceleration
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_acceleration') }}"
           - name: sprint_speed
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_sprint_speed') }}"
           - name: agility
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_agility') }}"
           - name: reactions
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_reactions') }}"
           - name: balance
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_balance') }}"
           - name: shot_power
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_shot_power') }}"
           - name: jumping
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_jumping') }}"
           - name: stamina
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_stamina') }}"
           - name: strength
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_strength') }}"
           - name: long_shots
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_long_shots') }}"
           - name: aggression
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_aggression') }}"
           - name: interceptions
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_interceptions') }}"
           - name: positioning
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_positioning') }}"
           - name: vision
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_vision') }}"
           - name: penalties
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_penalties') }}"
           - name: marking
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_marking') }}"
           - name: standing_tackle
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_standing_tackle') }}"
           - name: sliding_tackle
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_sliding_tackle') }}"
           - name: gk_diving
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_gk_diving') }}"
           - name: gk_handling
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_gk_handling') }}"
           - name: gk_kicking
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_gk_kicking') }}"
           - name: gk_positioning
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_gk_positioning') }}"
           - name: gk_reflexes
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('player_attributes_gk_reflexes') }}"
 
       - name: team
-        description: ""
+        description: "{{ doc('eu_soccer_db_team') }}"
         columns:
           - name: id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('team_id') }}"
           - name: team_api_id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('team_team_api_id') }}"
           - name: team_fifa_api_id
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('team_team_fifa_api_id') }}"
           - name: team_long_name
             data_type: STRING
-            description: ""
+            description: "{{ doc('team_team_long_name') }}"
           - name: team_short_name
             data_type: STRING
-            description: ""
+            description: "{{ doc('team_team_short_name') }}"
 
       - name: team_attributes
-        description: ""
+        description: "{{ doc('eu_soccer_db_team_attributes') }}"
         columns:
           - name: id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('team_attributes_id') }}"
           - name: team_fifa_api_id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('team_attributes_team_fifa_api_id') }}"
           - name: team_api_id
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('team_attributes_team_api_id') }}"
           - name: date
             data_type: STRING
-            description: ""
+            description: "{{ doc('team_attributes_date') }}"
           - name: buildupplayspeed
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('team_attributes_buildupplayspeed') }}"
           - name: buildupplayspeedclass
             data_type: STRING
-            description: ""
+            description: "{{ doc('team_attributes_buildupplayspeedclass') }}"
           - name: buildupplaydribbling
             data_type: DOUBLE
-            description: ""
+            description: "{{ doc('team_attributes_buildupplaydribbling') }}"
           - name: buildupplaydribblingclass
             data_type: STRING
-            description: ""
+            description: "{{ doc('team_attributes_buildupplaydribblingclass') }}"
           - name: buildupplaypassing
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('team_attributes_buildupplaypassing') }}"
           - name: buildupplaypassingclass
             data_type: STRING
-            description: ""
+            description: "{{ doc('team_attributes_buildupplaypassingclass') }}"
           - name: buildupplaypositioningclass
             data_type: STRING
-            description: ""
+            description: "{{ doc('team_attributes_buildupplaypositioningclass') }}"
           - name: chancecreationpassing
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('team_attributes_chancecreationpassing') }}"
           - name: chancecreationpassingclass
             data_type: STRING
-            description: ""
+            description: "{{ doc('team_attributes_chancecreationpassingclass') }}"
           - name: chancecreationcrossing
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('team_attributes_chancecreationcrossing') }}"
           - name: chancecreationcrossingclass
             data_type: STRING
-            description: ""
+            description: "{{ doc('team_attributes_chancecreationcrossingclass') }}"
           - name: chancecreationshooting
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('team_attributes_chancecreationshooting') }}"
           - name: chancecreationshootingclass
             data_type: STRING
-            description: ""
+            description: "{{ doc('team_attributes_chancecreationshootingclass') }}"
           - name: chancecreationpositioningclass
             data_type: STRING
-            description: ""
+            description: "{{ doc('team_attributes_chancecreationpositioningclass') }}"
           - name: defencepressure
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('team_attributes_defencepressure') }}"
           - name: defencepressureclass
             data_type: STRING
-            description: ""
+            description: "{{ doc('team_attributes_defencepressureclass') }}"
           - name: defenceaggression
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('team_attributes_defenceaggression') }}"
           - name: defenceaggressionclass
             data_type: STRING
-            description: ""
+            description: "{{ doc('team_attributes_defenceaggressionclass') }}"
           - name: defenceteamwidth
             data_type: BIGINT
-            description: ""
+            description: "{{ doc('team_attributes_defenceteamwidth') }}"
           - name: defenceteamwidthclass
             data_type: STRING
-            description: ""
+            description: "{{ doc('team_attributes_defenceteamwidthclass') }}"
           - name: defencedefenderlineclass
             data_type: STRING
-            description: ""
+            description: "{{ doc('team_attributes_defencedefenderlineclass') }}"
