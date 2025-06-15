@@ -12,7 +12,7 @@
 
   <p align="center">
     MLOps demo with Python models in dbt on the <a href="https://www.kaggle.com/datasets/hugomathien/soccer">European Soccer Database</a>
-   
+
   </p>
 </div>
 
@@ -48,10 +48,7 @@ This thrilling adventure requires:
 
 
 
-### Installation (Azure)
-
-Buckle up for the setup ride:
-
+### Installation (Databricks)
 
 1. install virtual environment
    ```bash
@@ -59,15 +56,15 @@ Buckle up for the setup ride:
    source venv/bin/activate
    pip install -r requirements.txt
    ```
-2. Download data from [here]("https://www.kaggle.com/datasets/hugomathien/soccer/download?datasetVersionNumber=10") -> you need a Kaggle account. Drop the resulting `database.sqlite` file in the data folder. 
+2. Download data from [here]("https://www.kaggle.com/datasets/hugomathien/soccer/download?datasetVersionNumber=10") -> you need a Kaggle account. Drop the resulting `database.sqlite` file in the data folder.
 3. Convert data to parquet and csv files
    ```bash
    python scripts/convert_data.py
    ```
 4. Databricks
    1. Create a SQL warehouse -> check the connection details for your profile in the next step
-   2. Create a [personal access token](https://learn.microsoft.com/en-us/azure/databricks/dev-tools/auth#--azure-databricks-personal-access-tokens-for-workspace-users), keep this token close and use to connect dbt to your sql warehouse.
-   3. Upload data (parquet files) to warehouse, into the `default` schema in the `hive_metastore` catalog. Your catalog should look something like this \
+   2. Create a personal access token
+   3. Upload data (parquet files) to warehouse
    ![](images/catalog.png)
    4. Create a compute cluster
    5. check the cluster id (you can find in the SparkUI), and set as env var: `COMPUTE_CLUSTER_ID=...` \
@@ -77,13 +74,13 @@ Buckle up for the setup ride:
    ```sh
    cd dbt_your_latest_bet
    dbt deps
-   ``` 
+   ```
    2. setup your [dbt profile](https://docs.getdbt.com/docs/core/connect-data-platform/connection-profiles), should look something like this:
    ```yaml
    databricks:
     outputs:
         dev:
-            catalog: hive_metastore 
+            catalog: hive_metastore
             host: xxx.cloud.databricks.com
             http_path: /sql/1.0/warehouses/$SQL_WAREHOUSE_ID
             schema: football
@@ -97,7 +94,7 @@ Buckle up for the setup ride:
    ```sh
    cd riskrover
    poetry build
-   pip install dist/riskrover-x.y.z.tar.gz 
+   pip install dist/riskrover-x.y.z.tar.gz
    ```
    2. Install the resulting `riskrover` whl file on your databricks compute cluster
 
@@ -118,7 +115,7 @@ dbt build --selector gold
 
 Explore and command the powers of our pipeline.
 
-For these examples to work -> you need to move to the root dir of the dbt project, i.e. `dbt_your_best_bet`. 
+For these examples to work -> you need to move to the root dir of the dbt project, i.e. `dbt_your_best_bet`.
 
 ### MWE for a simulation
 
@@ -205,3 +202,57 @@ Distributed under the MIT License.
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+
+
+
+## TO ADD TO README
+
+- how to clean simulation
+- updated setup guide -> env vars!!!!
+- how to install package on databricks cluster
+- more examples on how to follow along the simulation
+- evaluation notebook
+- ...
+
+## Cleanup
+
+```sql
+drop table if exists snapshots.predict_input_history;
+drop table if exists snapshots.experiment_history;
+```
+
+then build with `--full-refresh`
+
+
+## Simulation
+
+The default variables are stored in `dbt_project.yaml`. We find ourselves on 2016-01-01 in our simulation, with the option to run until 2016-05-25.
+
+```sh
+# Preprocessing
+dbt build --selector gold --full-refresh
+
+# Experimentation (by default -> training set to 2015-07-31, and trains a simple logistic regression with cross validation) => best model is stored
+dbt build --selector ml_experiment --vars '{"ml_experiment_model": "logistic_regression", "ml_experiment_cv_n_iter": 10, "ml_experiment_n_splits": 2}'
+
+# cross validation with xgboost
+dbt build --selector ml_experiment --vars '{"ml_experiment_model": "xgboost", "ml_experiment_cv_n_iter": 10, "ml_experiment_n_splits": 2}'
+
+# random forest
+dbt build --selector ml_experiment --vars '{"ml_experiment_model": "random_forest", "ml_experiment_cv_n_iter": 10, "ml_experiment_n_splits": 2}'
+
+# Inference on test set (2015-08-01 -> 2015-12-31)
+# You Let's perform on all models
+RUN_DATE='2016-01-01' dbt build --selector ml_predict_run --vars '{"ml_predict_model": "logistic_regression"}'
+RUN_DATE='2016-01-01' dbt build --selector ml_predict_run --vars '{"ml_predict_model": "random_forest"}'
+RUN_DATE='2016-01-01' dbt build --selector ml_predict_run --vars '{"ml_predict_model": "xgboost"}'
+
+# Good time to take stock of the different models:
+dbt compile -s analyses/compare_model_profit.sql
+
+# moving forward in time, for example with a weekly run
+dbt build --vars '{"run_date": "2016-01-08"}'
+dbt build --vars '{"run_date": "2016-01-15"}'
+dbt build --vars '{"run_date": "2016-01-22"}'
+```

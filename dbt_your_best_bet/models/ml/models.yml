@@ -37,3 +37,4 @@ models:
       tags: []
 
       ml_model_path: "{{ var('ml_model_path') }}"
+      model: "{{ var('ml_predict_model', '') }}"
