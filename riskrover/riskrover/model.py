@@ -1,7 +1,10 @@
 from typing import Any, Union
-from riskrover.pipeline import build_pipeline
+
 import joblib
+import numpy as np
 import pandas as pd
+
+from riskrover.pipeline import build_pipeline
 
 # Mapping for result classes
 _MAP_TO_CLASS = {"a": "away", "d": "draw", "h": "home"}
@@ -87,7 +90,7 @@ class RiskRover:
         Returns:
         - pd.DataFrame: DataFrame containing prediction results.
         """
-        y_proba = self.predict_proba(X)
+        y_proba = np.array(self.predict_proba(X))
         y_odds = 1 / y_proba
 
         df_odds = X.filter(regex="odds").join(
