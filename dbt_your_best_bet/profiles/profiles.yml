@@ -1,0 +1,11 @@
+databricks:
+  target: dev
+  outputs:
+    dev:
+      type: databricks
+      catalog: '{{ env_var("DATABRICKS_CATALOG", "default") }}'
+      schema: football
+      host: '{{ env_var("DATABRICKS_HOST", "YOURORG.databrickshost.com") }}'
+      http_path: '{{ env_var("DATABRICKS_HTTP_PATH", "") }}'
+      token: '{{ env_var("DATABRICKS_TOKEN", "your_token_here") }}'
+      threads: 4

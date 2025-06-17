@@ -1,11 +1,11 @@
-from datetime import datetime
-
-from riskrover.model import RiskRover
-from riskrover.pipeline import preprocess_match_dataset
 import logging
+from datetime import datetime
 
 import pyspark.sql.functions as F
 import pyspark.sql.types as T
+
+from riskrover.model import RiskRover
+from riskrover.pipeline import preprocess_match_dataset
 
 # PySpark schema for the output predictions
 _OUTPUT_SCHEMA = T.StructType(
@@ -42,8 +42,15 @@ def model(dbt, session):
     dbt.config(materialized="incremental", incremental_strategy="append")
 
     if (model_path := dbt.config.get("ml_model_path")) == "best":
+        # If the model path is set to 'best', retrieve the best model from the experiment history
+        df_experiment = dbt.ref("experiment_history")
+
+        if algorithm := dbt.config.get("model"):
+            df_experiment = df_experiment.filter(F.col("algorithm") == algorithm)
+
         model_path = (
-            dbt.ref("experiment_history")
+            df_experiment
+            # sometimes experiments fail => null values in the results
             .filter(F.isnotnull(F.col("mean_test_neg_log_loss")))
             .orderBy("mean_test_neg_log_loss", ascending=False)
             .select(F.col("best_estimator_path"))
@@ -74,7 +81,7 @@ def model(dbt, session):
             .filter(F.isnull(F.col("prediction_id_out")))
             .drop(F.col("prediction_id_out"))
         )
-        
+
     # Check for empty data and return an empty DataFrame if necessary
     if df.count() == 0:
         return session.createDataFrame([], schema=_OUTPUT_SCHEMA)

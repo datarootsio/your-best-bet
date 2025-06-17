@@ -15,10 +15,15 @@ from sklearn import (
 
 from pathlib import Path
 import json
+import importlib.resources
 
+# Ensures that all sklearn transformers output Pandas DataFrames with proper column names, 
+# making debugging and understanding intermediate steps much easier.
 set_config(transform_output="pandas")
 
 # Categorical type definitions for features
+# ordered categorical types enforce specific categories and their inherent order (e.g., "Slow" < "Balanced" < "Fast")
+# which is vital for proper ordinal encoding.
 amount_type = pd.CategoricalDtype(categories=["Little", "Normal", "Lots"], ordered=True)
 speed_type = pd.CategoricalDtype(categories=["Slow", "Balanced", "Fast"], ordered=True)
 length_type = pd.CategoricalDtype(categories=["Short", "Mixed", "Long"], ordered=True)
@@ -32,7 +37,7 @@ width_type = pd.CategoricalDtype(categories=["Narrow", "Normal", "Wide"], ordere
 offside_type = pd.CategoricalDtype(categories=["Cover", "Offside Trap"])
 result_type = pd.CategoricalDtype(categories=["away", "draw", "home"])
 
-with open(Path(__file__).parent / "features.json", "r") as f:
+with importlib.resources.files("riskrover").joinpath("features.json").open() as f:
     FEATURES = json.load(f)
 
 TARGET = "winner"

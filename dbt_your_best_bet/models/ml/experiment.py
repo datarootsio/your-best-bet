@@ -17,6 +17,13 @@ from riskrover import pipeline
 
 import pyspark.sql.types as T
 
+import warnings
+
+warnings.filterwarnings("ignore", category=FutureWarning)
+warnings.filterwarnings("ignore", category=UserWarning)
+warnings.filterwarnings("ignore", category=RuntimeWarning)
+
+
 # Grid search parameters for different models
 _MODEL_GRIDS = {
     "random_forest": {
@@ -45,7 +52,7 @@ _PIPELINE_PARAMS = {
     "selector__k": scipy.stats.randint(20, 100),
 }
 
-# Scoring metrics for cross-validation
+# Scoring metrics for cross-validation, best model will be selected based on 'neg_log_loss'
 _CV_SCORING = [
     "neg_log_loss",
     "accuracy",
@@ -126,7 +133,7 @@ def get_model(model_name):
         case "random_forest":
             return ensemble.RandomForestClassifier()
         case "logistic_regression":
-            return linear_model.LogisticRegression()
+            return linear_model.LogisticRegression(max_iter=1000)
         case "xgboost":
             return xgboost.XGBClassifier(objective="multi:softprob")
 
@@ -171,7 +178,7 @@ def model(dbt, session):
 
     X_train, y_train = pipeline.preprocess_match_dataset(df, max_date=train_end_date)
     algorithm = get_model(model)
-    clf = pipeline.build_pipeline(model=algorithm, memory=cache_dir)
+    clf = pipeline.build_pipeline(model=algorithm, memory=cache_dir, verbose=True)
     cv = model_selection.RandomizedSearchCV(
         estimator=clf,
         param_distributions=build_param_grid(model),
@@ -218,7 +225,7 @@ def model(dbt, session):
         pd.DataFrame(cv.cv_results_)
         # parameters are different depending on the model -> exclude from the schema
         # std + split scores are TMI
-        .filter(regex="^(?!param_|split\d+|std)")
+        .filter(regex=r"^(?!param_|split\d+|std)")
         .assign(**meta)
         .assign(
             experiment_id=lambda df: df.apply(generate_experiment_id, axis=1),
