@@ -2,5 +2,6 @@
 target/
 dbt_packages/
 logs/
+profiles/
 analysis/uncommitted
 notebooks

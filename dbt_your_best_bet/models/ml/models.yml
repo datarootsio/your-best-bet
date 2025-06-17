@@ -10,7 +10,7 @@ models:
       submission_method: all_purpose_cluster
       create_notebook: True
       # this cluster id -> NOT the SQL warehouse
-      cluster_id: "{{env_var('DATABRICKS_CLUSTER_ID', 'not set!')}}"
+      cluster_id: "{{env_var('COMPUTE_CLUSTER_ID', 'not set!')}}"
       tags: []
 
       # variables
@@ -33,8 +33,7 @@ models:
     config:
       submission_method: all_purpose_cluster
       create_notebook: True
-      cluster_id: "{{env_var('DATABRICKS_CLUSTER_ID', 'not set!')}}"
+      cluster_id: "{{env_var('COMPUTE_CLUSTER_ID', 'not set!')}}"
       tags: []
 
       ml_model_path: "{{ var('ml_model_path') }}"
-      model: "{{ var('ml_predict_model', '') }}"

@@ -1,28 +1,21 @@
 [tool.poetry]
 name = "riskrover"
-version = "0.2.0"
+version = "0.1.0"
 description = "Python package"
 authors = ["Dorian Van den Heede <dorian@dataroots.io>"]
 readme = "README.md"
 packages = [{include = "riskrover"}]
 
 [tool.poetry.dependencies]
-python = "^3.11"
+python = "^3.10"
 scikit-learn = "^1.3.1"
-xgboost = "^3.0.2"
-python-dotenv = "^1.1.0"
-dbutils = "^3.1.1"
-numpy = "^1.26.4"
+xgboost = "^2.0.0"
+python-dotenv = "^1.0.0"
+dbutils = "^3.0.3"
 
 [tool.poetry.group.dev.dependencies]
-seaborn = "^0.13.2"
-ipykernel = "^6.29.5"
-databricks-sql-connector = "^4.0.3"
-
-
-[tool.poetry.group.analysis.dependencies]
-seaborn = "^0.13.2"
-ipykernel = "^6.29.5"
+seaborn = "^0.12.2"
+ipykernel = "^6.25.2"
 
 [build-system]
 requires = ["poetry-core"]

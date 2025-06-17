@@ -14,7 +14,6 @@ test-paths: ["tests"]
 seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
-docs-paths: ["docs"]
 
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
@@ -49,7 +48,7 @@ vars:
   # The `start_date` variable will be accessible in all resources
   start_date: '2010-02-22'
   train_end_date: '2015-07-31'
-  run_date: "{{ env_var('RUN_DATE', '2016-01-01') }}"
+  run_date: '2016-01-01'
   ml_experiment_model: 'logistic_regression'
   ml_experiment_cv_n_iter: 20
   ml_experiment_n_splits: 4

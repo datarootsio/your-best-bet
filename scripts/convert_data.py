@@ -1,4 +1,5 @@
 from pathlib import Path
+import pandas as pd
 import sqlite3
 
 PROJECT_DIR = Path(__file__).parents[1]
