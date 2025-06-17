@@ -18,6 +18,7 @@ numpy = "^1.26.4"
 seaborn = "^0.13.2"
 ipykernel = "^6.29.5"
 databricks-sql-connector = "^4.0.3"
+pytest = "^8.4.0"
 
 
 [tool.poetry.group.analysis.dependencies]
