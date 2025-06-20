@@ -38,3 +38,12 @@ models:
 
       ml_model_path: "{{ var('ml_model_path') }}"
       model: "{{ var('ml_predict_model', '') }}"
+
+  - name: evaluation
+    description: Evaluates the model performance
+    data_tests:
+      - assert_not_going_bankrupt:
+          column_name: profit
+          threshold: -100
+          severity: warn
+          description: "Profit should not decrease too much over time"

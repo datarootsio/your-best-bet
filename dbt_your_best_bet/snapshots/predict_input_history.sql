@@ -1,7 +1,7 @@
 {% snapshot predict_input_history %}
     {{ config(
         target_schema = 'snapshots',
-        unique_key = 'prediction_id',
+        unique_key = 'id',
         strategy = 'check',
         check_cols = ['prediction_id'],
     ) }}
